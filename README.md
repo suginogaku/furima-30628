@@ -4,13 +4,12 @@
 |------|----|-------|
 | nickname | string | null: false |
 | email | string | unique: true |
-| password   | string | null: false |
-| password_conformation | string | null: false |
+| encrypted_password | string | null: false|
 | first_name | string | null: false |
 | last_name  | string | null: false |
 | first_name_kana | string | null: false |
 | last_name_kana | string | null: false |
-| birthday   | integer | null: false |
+| birthday   | date | null: false |
 
 ### Association
 - has_many :items
@@ -22,8 +21,13 @@
 |------|----|-------|
 | item_name | string | null: false |
 | item_explain | text | null: false |
+| item_category_id | integer | null: false |
+| item_status_id | integer | null: false |
+| item_burden_id | integer | null: false |
+| item_prefecture_id | integer | null: false |
+| item_day_id | integer | null: false |
 | item_price | integer | null: false |
-| user_id | references | foreign_key: true |
+| user | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -33,8 +37,8 @@
 ## purchasesテーブル
 |Column|Type|Options|
 |------|----|-------|
-| user_id | references | foreign_key: true |
-| item_id | references | foreign_key: true |
+| user | references | foreign_key: true |
+| item | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -44,12 +48,13 @@
 ## addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
-| postcode | integer | null: false |
+| postcode | string | null: false |
+| prefecture_id | integer | null: false |
 | city | string | null: false |
 | block | string | null: false |
 | building | string |
-| phone_number | integer | null: false |
-| purchase_id | references | foreign_key: true |
+| phone_number | string | null: false |
+| purchase | references | foreign_key: true |
 
 ### Association
 - belongs_to purchase
