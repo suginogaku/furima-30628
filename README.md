@@ -1,24 +1,55 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column|Type|Options|
+|------|----|-------|
+| nickname | string | null: false |
+| email | string | unique: true |
+| password   | string | null: false |
+| password_conformation | string | null: false |
+| first_name | string | null: false |
+| last_name  | string | null: false |
+| first_name_kana | string | null: false |
+| last_name_kana | string | null: false |
+| birthday   | integer | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :purchases
 
-* Ruby version
 
-* System dependencies
+## itemsテーブル
+|Column|Type|Options|
+|------|----|-------|
+| item_name | string | null: false |
+| item_explain | text | null: false |
+| item_price | integer | null: false |
+| user_id | references | foreign_key: true |
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one :purchase
 
-* Database creation
 
-* Database initialization
+## purchasesテーブル
+|Column|Type|Options|
+|------|----|-------|
+| user_id | references | foreign_key: true |
+| item_id | references | foreign_key: true |
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* Services (job queues, cache servers, search engines, etc.)
+## addressesテーブル
+|Column|Type|Options|
+|------|----|-------|
+| postcode | integer | null: false |
+| city | string | null: false |
+| block | string | null: false |
+| building | string |
+| phone_number | integer | null: false |
+| purchase_id | references | foreign_key: true |
 
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to purchase
