@@ -44,11 +44,17 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include('パスワードは6文字以上で入力してください')
       end
-      it 'passwordが半角英数字混合でない場合登録できない' do
+      it 'passwordが英数字混合のみでは登録できない' do
         @user.password = '000000'
         @user.password_confirmation = '000000'
         @user.valid?
         expect(@user.errors.full_messages).to include('パスワードは英字と数字の両方を含めて設定してください')
+      end
+      it 'passwordが英字のみでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワードは英字と数字の両方を含めて設定してください")
       end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password = '000aaa'
