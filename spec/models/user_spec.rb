@@ -54,7 +54,7 @@ describe User do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワードは英字と数字の両方を含めて設定してください")
+        expect(@user.errors.full_messages).to include('パスワードは英字と数字の両方を含めて設定してください')
       end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password = '000aaa'
