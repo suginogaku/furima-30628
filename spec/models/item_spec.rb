@@ -32,25 +32,50 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include('カテゴリーを入力してください')
       end
+      it 'item_categoryが1のときは登録できない' do
+        @item.item_category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("カテゴリーは1以外の値にしてください")
+      end
       it 'item_statusが空だと登録できない' do
         @item.item_status_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('商品の状態を入力してください')
+      end
+      it 'item_statusが1のときは登録できない' do
+        @item.item_status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("商品の状態は1以外の値にしてください")
       end
       it 'item_burdenが空だと登録できない' do
         @item.item_burden_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('配送料の負担を入力してください')
       end
+      it 'item_burdenが1のときは登録できない' do
+        @item.item_burden_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("配送料の負担は1以外の値にしてください")
+      end
       it 'item_prefectureが空だと登録できない' do
         @item.item_prefecture_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('発送先の地域を入力してください')
       end
+      it 'item_prefectureが1のときは登録できない' do
+        @item.item_prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("発送先の地域は1以外の値にしてください")
+      end
       it 'item_dayが空だと登録できない' do
         @item.item_day_id = nil
         @item.valid?
         expect(@item.errors.full_messages).to include('発送までの日数を入力してください')
+      end
+      it 'item_dayが1のときは登録できない' do
+        @item.item_day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("発送までの日数は1以外の値にしてください")
       end
       it 'item_priceが空だと登録できない' do
         @item.item_price = nil
@@ -59,6 +84,11 @@ describe Item do
       end
       it 'item_priceの値が300未満かつ9,999,999以上だと登録できない' do
         @item.item_price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include('販売価格300以上9,999,999未満で入力して下さい')
+      end
+      it 'item_priceの値が10000000以上だと登録できない' do
+        @item.item_price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include('販売価格300以上9,999,999未満で入力して下さい')
       end
