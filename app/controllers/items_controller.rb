@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
+    @item = Item.order('created_at DESC')
+    # @burden = Burden.order('id DESC')
   end
 
   def new
