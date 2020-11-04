@@ -14,6 +14,7 @@ class Item < ApplicationRecord
     validates :image, :item_name, :item_explain
   end
 
+  # エラーメッセージの表示を変更したほうがいい(この記述はあえて残しています)
   with_options presence: true, numericality: { other_than: 1 } do
     validates :category_id, :status_id, :burden_id, :prefecture_id, :day_id
   end
