@@ -20,7 +20,9 @@
         <%= @item.item_price %>
       </span>
       <span class="item-postage">
-        <%= @item.burden.name %>
+      <%# 下記の記述は追加実装ように残しています %>
+      <%# <%= @item.burden.name %> 
+      <%= '配送料負担' %>
       </span>
     </div>
 
