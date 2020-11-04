@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   end
 
   with_options presence: true, numericality: { other_than: 1 } do
-    validates :item_category_id, :item_status_id, :item_burden_id, :item_prefecture_id, :item_day_id
+    validates :category_id, :status_id, :burden_id, :prefecture_id, :day_id
   end
 
   validates :item_price, presence: true, numericality: { only_integer: true, message: 'は半角数字を使用して下さい' }

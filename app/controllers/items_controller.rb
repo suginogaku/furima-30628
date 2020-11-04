@@ -1,9 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @item = Item.order('created_at DESC')
-    # @burden = Burden.order('id DESC')
   end
 
   def new
@@ -19,10 +18,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   private
 
   def item_params
     # permitの記述にカラムを追加する
-    params.require(:item).permit(:image, :item_name, :item_explain, :item_category_id, :item_status_id, :item_burden_id, :item_prefecture_id, :item_day_id, :item_price).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :item_name, :item_explain, :category_id, :status_id, :burden_id, :prefecture_id, :day_id, :item_price).merge(user_id: current_user.id)
   end
 end
