@@ -17,9 +17,9 @@ ja:
         image: 出品画像
         item_name: 商品名
         item_explain: 商品説明
-        item_category_id: カテゴリー
-        item_status_id: 商品の状態
-        item_burden_id: 配送料の負担
-        item_prefecture_id: 発送先の地域
-        item_day_id: 発送までの日数
+        category_id: カテゴリー
+        status_id: 商品の状態
+        burden_id: 配送料の負担
+        prefecture_id: 発送先の地域
+        day_id: 発送までの日数
         item_price: 販売価格

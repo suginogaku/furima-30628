@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :item_find, only: [:show, :edit, :update]
 
   def index
     @item = Item.order('created_at DESC')
@@ -19,7 +20,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def edit
+    redirect_to root_path unless current_user.id == @item.user_id
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render :edit
+    end
   end
 
   private
@@ -27,5 +39,9 @@ class ItemsController < ApplicationController
   def item_params
     # permitの記述にカラムを追加する
     params.require(:item).permit(:image, :item_name, :item_explain, :category_id, :status_id, :burden_id, :prefecture_id, :day_id, :item_price).merge(user_id: current_user.id)
+  end
+
+  def item_find
+    @item = Item.find(params[:id])
   end
 end
