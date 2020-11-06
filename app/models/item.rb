@@ -16,7 +16,19 @@ class Item < ApplicationRecord
 
   # エラーメッセージの表示を変更したほうがいい(この記述はあえて残しています)
   with_options numericality: { other_than: 1 } do
-    validates :category_id, :status_id, :burden_id, :prefecture_id, :day_id
+    validates :category_id
+    validates :status_id 
+    validates :burden_id 
+    validates :prefecture_id 
+    validates :day_id
+  end
+
+  with_options presence: true do
+    validates :category_id
+    validates :status_id 
+    validates :burden_id 
+    validates :prefecture_id 
+    validates :day_id
   end
 
   validates :item_price, presence: true, numericality: { only_integer: true, message: 'は半角数字を使用して下さい' }
