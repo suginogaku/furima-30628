@@ -39,6 +39,11 @@ RSpec.describe UserAddress, type: :model do
       @user_address.valid?
       expect(@user_address.errors.full_messages).to include('都道府県を入力してください')
     end
+    it 'prefecture_idが1の場合だと保存できないこと' do
+      @user_address.prefecture_id = 1
+      @user_address.valid?
+      expect(@user_address.errors.full_messages).to include('都道府県は空で入力しないで下さい')
+    end
     it 'cityが空だと保存できないこと' do
       @user_address.city = nil
       @user_address.valid?
