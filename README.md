@@ -1,3 +1,16 @@
+# アプリケーションの概要
+ECサイトのクローンアプリ
+
+# 環境
+* [Web URL](https://furima-30628.herokuapp.com/)
+* フレームワーク
+  <br>
+  Ruby on Rails
+* データベース
+  <br>
+  mySQL
+
+
 ## usersテーブル
 
 |Column|Type|Options|
